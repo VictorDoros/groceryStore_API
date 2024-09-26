@@ -1,14 +1,12 @@
-import CreateCartVariables from "../variables/createCartVariables"
-
 export default class CreateCartAPI {
-  createCart(createCartVariables: CreateCartVariables) {
+  createCart() {
     return cy
       .api({
         url: "/carts",
         method: "POST",
       })
       .then((response) => {
-        createCartVariables.setCartID(response.body.cartId)
+        Cypress.env("cartID", response.body.cartId)
       })
   }
 }

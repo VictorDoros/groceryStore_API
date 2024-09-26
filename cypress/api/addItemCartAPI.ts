@@ -1,22 +1,15 @@
-import CreateCartVariables from "../variables/createCartVariables"
-import ItemVariables from "../variables/itemVariables"
-import ListProductVariables from "../variables/listProductVariables"
-
 export default class AddItemAPI {
-  addItem(
-    createCartVariables: CreateCartVariables,
-    listProductVariables: ListProductVariables
-  ) {
+  addItem() {
     return cy
       .api({
-        url: `/carts/${createCartVariables.getCartID()}/items`,
+        url: `/carts/${Cypress.env("cartID")}/items`,
         method: "POST",
         body: {
-          productId: `${listProductVariables.getFreshProduct()}`,
+          productId: `${Cypress.env("productID")}`,
         },
       })
       .then((response) => {
-        new ItemVariables().setItemID(response.body.itemId)
+        Cypress.env("itemID", response.body.itemId)
       })
   }
 }

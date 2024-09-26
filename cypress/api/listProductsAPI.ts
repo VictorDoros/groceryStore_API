@@ -1,8 +1,7 @@
-import ListProductVariables from "../variables/listProductVariables"
 import "cypress-map"
 
 export default class ListProductsAPI {
-  getListProducts(variables: ListProductVariables) {
+  getListProducts() {
     return cy
       .api({
         url: "/products",
@@ -14,8 +13,7 @@ export default class ListProductsAPI {
             product.name === "Green Cabbage Organic" && product.inStock === true
         )
         if (freshProduct) {
-          variables.setFreshProduct(freshProduct.id)
-          console.log(freshProduct)
+          Cypress.env("productID", freshProduct.id)
         }
 
         const meatSeaFood = response.body.find(
@@ -23,7 +21,7 @@ export default class ListProductsAPI {
             product.name === "Angus Steak Burgers" && product.inStock === true
         )
         if (meatSeaFood) {
-          variables.setMeatSeaFood(meatSeaFood.id)
+          Cypress.env("meatSeaFoodID", meatSeaFood.id)
         }
 
         const beverage = response.body
@@ -32,7 +30,7 @@ export default class ListProductsAPI {
           })
           .map((coffee) => coffee.id)
         if (beverage) {
-          variables.setBeverage(beverage[2])
+          Cypress.env("coffeID", beverage[2])
         }
       })
   }

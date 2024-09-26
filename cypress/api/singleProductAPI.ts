@@ -1,20 +1,12 @@
-import ListProductVariables from "../variables/listProductVariables"
-import SingleProductVariables from "../variables/singleProductVariables"
-
 export default class SingleProductAPI {
-  getSingleProduct(
-    listProductVariables: ListProductVariables,
-    singleProductVariables: SingleProductVariables
-  ) {
+  getSingleProduct() {
     return cy
       .api({
-        url: `/products/${Number(listProductVariables.getFreshProduct())}`,
+        url: `/products/${Number(Cypress.env("productID"))}`,
         method: "GET",
       })
       .then((response) => {
-        singleProductVariables.setProductCurrentStock(
-          response.body["current-stock"]
-        )
+        Cypress.env("productCurrentStock", response.body["current-stock"])
       })
   }
 }

@@ -1,6 +1,6 @@
 import ListProductsAPI from "../api/listProductsAPI"
 
-describe("Get list of products", {tags: ["@getListProducts"]}, () => {
+describe("Get list of products", { tags: ["@getListProducts"] }, () => {
   let listProductsAPI: ListProductsAPI
 
   before(() => {

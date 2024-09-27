@@ -1,7 +1,7 @@
 import GetCartAPI from "../api/getCartAPI"
 import CreateCartAPI from "../api/createCartAPI"
 
-describe("Get the cart and add items", () => {
+describe("Get the cart and add items", {tags: ["@getCart"]}, () => {
   let getCartAPI: GetCartAPI
   let createCartAPI: CreateCartAPI
 

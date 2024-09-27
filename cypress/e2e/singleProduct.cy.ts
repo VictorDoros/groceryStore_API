@@ -1,7 +1,7 @@
 import ListProductAPI from "../api/listProductsAPI"
 import SingleProductAPI from "../api/singleProductAPI"
 
-describe("Get a single product from the list", () => {
+describe("Get a single product from the list", {tags: ["@getSingleProduct"]}, () => {
   let listProductAPI: ListProductAPI
   let singleProductAPI: SingleProductAPI
 

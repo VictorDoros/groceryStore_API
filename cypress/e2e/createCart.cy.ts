@@ -1,6 +1,6 @@
 import CreateCartAPI from "../api/createCartAPI"
 
-describe("Create cart", () => {
+describe("Create cart", {tags: ["@createCart"]}, () => {
   let createCartAPI: CreateCartAPI
 
   before(() => {

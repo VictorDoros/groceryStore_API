@@ -3,48 +3,49 @@ import AddItemAPI from "../api/addItemCartAPI"
 import UpdateCartAPI from "../api/updateCartAPI"
 import GetCartAPI from "../api/getCartAPI"
 import GetCartItemsAPI from "../api/getCartItemsAPI"
+import Environment from "../support/environment"
 
 export default class CartActions {
-  sendGetCartRequest() {
-    new GetCartAPI().getCartAPI()
+  sendGetCartRequest(env: Environment) {
+    new GetCartAPI().getCartAPI(env)
   }
 
-  sendCreateCartRequest() {
+  sendCreateCartRequest(env: Environment) {
     cy.step("Create a new cart")
-    new CreateCartAPI().createCart()
+    new CreateCartAPI().createCart(env)
   }
 
-  sendAddItemRequest() {
-    new AddItemAPI().addItem()
+  sendAddItemRequest(env: Environment) {
+    new AddItemAPI().addItem(env)
   }
 
-  createCart_checkStatusCode() {
-    new CreateCartAPI().createCart().then((response) => {
+  createCart_checkStatusCode(env: Environment) {
+    new CreateCartAPI().createCart(env).then((response) => {
       expect(response.status).to.eq(201)
     })
   }
 
-  getCart_checkStatusCode() {
-    new GetCartAPI().getCartAPI().then((response) => {
+  getCart_checkStatusCode(env: Environment) {
+    new GetCartAPI().getCartAPI(env).then((response) => {
       expect(response.status).to.eq(200)
     })
   }
 
-  addItem_checkStatusCode() {
-    new AddItemAPI().addItem().then((response) => {
+  addItem_checkStatusCode(env: Environment) {
+    new AddItemAPI().addItem(env).then((response) => {
       expect(response.status).to.eq(201)
     })
   }
 
-  checkCartIsCreatedAndEmpty() {
-    new GetCartAPI().getCartAPI().then((response) => {
+  checkCartIsCreatedAndEmpty(env: Environment) {
+    new GetCartAPI().getCartAPI(env).then((response) => {
       expect(response.body).to.haveOwnProperty("created")
       expect(response.body.items).to.be.an("array").and.empty
     })
   }
 
-  checkCreatedCart() {
-    new CreateCartAPI().createCart().then((response) => {
+  checkCreatedCart(env: Environment) {
+    new CreateCartAPI().createCart(env).then((response) => {
       expect(response.body)
         .to.be.an("object")
         .and.haveOwnProperty("cartId")
@@ -52,14 +53,14 @@ export default class CartActions {
     })
   }
 
-  checkQuantityItemIsOne() {
-    new GetCartAPI().getCartAPI().then((response) => {
+  checkQuantityItemIsOne(env: Environment) {
+    new GetCartAPI().getCartAPI(env).then((response) => {
       expect(response.body.items.length).to.eq(1)
     })
   }
 
-  checkProductAddedToItem() {
-    new GetCartItemsAPI().getCartItems().then((response) => {
+  checkProductAddedToItem(env: Environment) {
+    new GetCartItemsAPI().getCartItems(env).then((response) => {
       expect(response.body[Cypress.env("indexOfItem")].quantity).to.eq(1)
       expect(response.body[Cypress.env("indexOfItem")].productId).to.eq(
         Cypress.env("productID")
@@ -70,26 +71,26 @@ export default class CartActions {
     })
   }
 
-  updateQuantityProduct_checkStatusCode() {
-    new UpdateCartAPI().updateQuantityProductAPI().then((response) => {
+  updateQuantityProduct_checkStatusCode(env: Environment) {
+    new UpdateCartAPI().updateQuantityProductAPI(env).then((response) => {
       expect(response.status).to.eq(204)
     })
   }
 
-  checkQuantityProductIsChanged() {
-    new GetCartItemsAPI().getCartItems().then((response) => {
+  checkQuantityProductIsChanged(env: Environment) {
+    new GetCartItemsAPI().getCartItems(env).then((response) => {
       expect(response.body[Cypress.env("indexOfItem")].quantity).not.to.eq(1)
     })
   }
 
-  replaceProduct_checkStatusCode() {
-    new UpdateCartAPI().replaceProductAPI().then((response) => {
+  replaceProduct_checkStatusCode(env: Environment) {
+    new UpdateCartAPI().replaceProductAPI(env).then((response) => {
       expect(response.status).to.eq(204)
     })
   }
 
-  checkProductWasReplaced() {
-    new GetCartItemsAPI().getCartItems().then((response) => {
+  checkProductWasReplaced(env: Environment) {
+    new GetCartItemsAPI().getCartItems(env).then((response) => {
       expect(response.body[Cypress.env("indexOfItem")].productId).to.eq(
         Cypress.env("meatSeaFoodID")
       )

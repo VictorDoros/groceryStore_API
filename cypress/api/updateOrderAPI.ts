@@ -1,7 +1,9 @@
+import Environment from "../support/environment"
+
 export default class UpdateOrderAPI {
-  updateOrder() {
+  updateOrder(env: Environment) {
     return cy.api({
-      url: `/orders/${Cypress.env("orderID")}`,
+      url: `${env.getEnvironment()}/orders/${Cypress.env("orderID")}`,
       method: "PATCH",
       body: {
         comment: "I wanna pick my order up at 6am.",

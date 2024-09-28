@@ -1,10 +1,11 @@
+import Environment from "../support/environment"
 import { faker } from "@faker-js/faker"
 
 export default class CreateOrder {
-  createOrderAPI() {
+  createOrderAPI(env: Environment) {
     return cy
       .api({
-        url: "/orders",
+        url: `${env.getEnvironment()}/orders`,
         method: "POST",
         body: {
           cartId: Cypress.env("cartID"),

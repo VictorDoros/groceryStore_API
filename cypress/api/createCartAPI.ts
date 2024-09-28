@@ -1,8 +1,10 @@
+import Environment from "../support/environment"
+
 export default class CreateCartAPI {
-  createCart() {
+  createCart(env: Environment) {
     return cy
       .api({
-        url: "/carts",
+        url: `${env.getEnvironment()}/carts`,
         method: "POST",
       })
       .then((response) => {

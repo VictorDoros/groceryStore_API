@@ -1,7 +1,9 @@
+import Environment from "../support/environment"
+
 export default class GetOrdersAPI {
-  getOrders() {
+  getOrders(env: Environment) {
     return cy.api({
-      url: "/orders",
+      url: `${env.getEnvironment()}/orders`,
       method: "GET",
       headers: {
         Authorization: `Bearer ${Cypress.env("accessToken")}`,

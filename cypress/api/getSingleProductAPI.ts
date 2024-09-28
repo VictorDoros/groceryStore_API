@@ -1,8 +1,12 @@
+import Environment from "../support/environment"
+
 export default class GETSingleProductAPI {
-  getSingleProduct() {
+  getSingleProduct(env: Environment) {
     return cy
       .api({
-        url: `/products/${Number(Cypress.env("productID"))}`,
+        url: `${env.getEnvironment()}/products/${Number(
+          Cypress.env("productID")
+        )}`,
         method: "GET",
       })
       .then((response) => {

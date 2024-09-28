@@ -1,7 +1,9 @@
+import Environment from "../support/environment"
+
 export default class GetCartAPI {
-  getCartAPI() {
+  getCartAPI(env: Environment) {
     return cy.api({
-      url: `/carts/${Cypress.env("cartID")}`,
+      url: `${env.getEnvironment()}/carts/${Cypress.env("cartID")}`,
       method: "GET",
     })
   }

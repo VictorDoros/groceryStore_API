@@ -1,10 +1,11 @@
+import Environment from "../support/environment"
 import "cypress-map"
 
 export default class GETListProductsAPI {
-  getListProducts() {
+  getListProducts(env: Environment) {
     return cy
       .api({
-        url: "/products",
+        url: `${env.getEnvironment()}/products`,
         method: "GET",
       })
       .then((response) => {

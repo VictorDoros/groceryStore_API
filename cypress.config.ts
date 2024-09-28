@@ -17,7 +17,7 @@ export default defineConfig({
     grepOmitFiltered: true,
   },
   e2e: {
-    baseUrl: "https://simple-grocery-store-api-testing.glitch.me",
+    //baseUrl: "https://simple-grocery-store-api-testing.glitch.me",
     setupNodeEvents(on, config) {
       require("cypress-mochawesome-reporter/plugin")(on)
       require("@cypress/grep/src/plugin")(config)

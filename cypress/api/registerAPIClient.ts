@@ -1,10 +1,11 @@
+import Environment from "../support/environment"
 import { faker } from "@faker-js/faker"
 
 export default class RegisterAPIClient {
-  registerAPIClient() {
+  registerAPIClient(env: Environment) {
     return cy
       .api({
-        url: "/api-clients",
+        url: `${env.getEnvironment()}/api-clients`,
         method: "POST",
         body: {
           clientName: `${faker.person.firstName()}`,

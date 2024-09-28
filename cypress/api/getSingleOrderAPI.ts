@@ -1,7 +1,9 @@
+import Environment from "../support/environment"
+
 export default class GetSingleOrderAPI {
-  getSingleOrder() {
+  getSingleOrder(env: Environment) {
     return cy.api({
-      url: `/orders/${Cypress.env("orderID")}`,
+      url: `${env.getEnvironment()}/orders/${Cypress.env("orderID")}`,
       method: "GET",
       headers: {
         Authorization: `Bearer ${Cypress.env("accessToken")}`,

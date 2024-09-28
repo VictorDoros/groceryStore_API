@@ -1,57 +1,57 @@
-import AddItemAPI from "../api/addItemCartAPI"
 import CreateOrderAPI from "../api/createOrderAPI"
 import GetOrdersAPI from "../api/getOrdersAPI"
 import GetSingleOrderAPI from "../api/getSingleOrderAPI"
 import UpdateOrderAPI from "../api/updateOrderAPI"
 import DeleteOrderAPI from "../api/deleteOrderAPI"
+import Environment from "../support/environment"
 
 export default class OrderActions {
-  createOrder_checkStatusCode() {
+  createOrder_checkStatusCode(env: Environment) {
     cy.step("Create the order")
-    new CreateOrderAPI().createOrderAPI().then((response) => {
+    new CreateOrderAPI().createOrderAPI(env).then((response) => {
       expect(response.status).to.eq(201)
     })
   }
 
-  checkOrderHasAnItem() {
-    new GetOrdersAPI().getOrders().then((response) => {
+  checkOrderHasAnItem(env: Environment) {
+    new GetOrdersAPI().getOrders(env).then((response) => {
       expect(response.body.length).to.eq(1)
     })
   }
 
-  getSingleOrderWithEmptyComment() {
-    new GetSingleOrderAPI().getSingleOrder().then((response) => {
+  getSingleOrderWithEmptyComment(env: Environment) {
+    new GetSingleOrderAPI().getSingleOrder(env).then((response) => {
       expect(response.body.comment).is.empty
     })
   }
 
-  updateOrder_checkStatusCode() {
-    new UpdateOrderAPI().updateOrder().then((response) => {
+  updateOrder_checkStatusCode(env: Environment) {
+    new UpdateOrderAPI().updateOrder(env).then((response) => {
       expect(response.status).to.eq(204)
     })
   }
 
-  checkUpdatedComment() {
-    new GetSingleOrderAPI().getSingleOrder().then((response) => {
+  checkUpdatedComment(env: Environment) {
+    new GetSingleOrderAPI().getSingleOrder(env).then((response) => {
       expect(response.body.comment).is.not.empty
       expect(response.body.comment).to.eq("I wanna pick my order up at 6am.")
     })
   }
 
-  deleteOrder_checkStatusCode() {
-    new DeleteOrderAPI().deleteOrderOrder().then((response) => {
+  deleteOrder_checkStatusCode(env: Environment) {
+    new DeleteOrderAPI().deleteOrderOrder(env).then((response) => {
       expect(response.status).to.eq(204)
     })
   }
 
-  getRemovedOrder_checkStatusCode() {
-    new GetSingleOrderAPI().getSingleOrder().then((response) => {
+  getRemovedOrder_checkStatusCode(env: Environment) {
+    new GetSingleOrderAPI().getSingleOrder(env).then((response) => {
       expect(response.status).to.eq(404)
     })
   }
 
-  checkErrorDeletedOrder() {
-    new GetSingleOrderAPI().getSingleOrder().then((response) => {
+  checkErrorDeletedOrder(env: Environment) {
+    new GetSingleOrderAPI().getSingleOrder(env).then((response) => {
       expect(response.body.error).to.eq(
         `No order with id ${Cypress.env("orderID")}.`
       )

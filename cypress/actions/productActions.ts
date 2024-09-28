@@ -1,36 +1,37 @@
 import GETListProductsAPI from "../api/getListProductsAPI"
 import GETSingleProductAPI from "../api/getSingleProductAPI"
+import Environment from "../support/environment"
 
 export default class ProductActions {
-  sendGETListProductRequest() {
-    new GETListProductsAPI().getListProducts()
+  sendGETListProductRequest(env: Environment) {
+    new GETListProductsAPI().getListProducts(env)
   }
 
-  sendGETSingleProductRequest() {
-    new GETSingleProductAPI().getSingleProduct()
+  sendGETSingleProductRequest(env: Environment) {
+    new GETSingleProductAPI().getSingleProduct(env)
   }
 
-  getListProducts_checkStatusCode() {
-    new GETListProductsAPI().getListProducts().then((response) => {
+  getListProducts_checkStatusCode(env: Environment) {
+    new GETListProductsAPI().getListProducts(env).then((response) => {
       expect(response.status).eq(200)
     })
   }
 
-  checkResponseOfGetListProducts() {
-    new GETListProductsAPI().getListProducts().then((response) => {
+  checkResponseOfGetListProducts(env: Environment) {
+    new GETListProductsAPI().getListProducts(env).then((response) => {
       expect(response).to.be.an("object")
       expect(response.body.length).to.be.above(0)
     })
   }
 
-  getSingleProduct_checkStatusCode() {
-    new GETSingleProductAPI().getSingleProduct().then((response) => {
+  getSingleProduct_checkStatusCode(env: Environment) {
+    new GETSingleProductAPI().getSingleProduct(env).then((response) => {
       expect(response.status).to.eq(200)
     })
   }
 
-  checkIDProduct() {
-    new GETSingleProductAPI().getSingleProduct().then((response) => {
+  checkIDProduct(env: Environment) {
+    new GETSingleProductAPI().getSingleProduct(env).then((response) => {
       expect(response.body)
         .to.be.an("object")
         .and.haveOwnProperty("id")
@@ -38,14 +39,14 @@ export default class ProductActions {
     })
   }
 
-  checkProductName() {
-    new GETSingleProductAPI().getSingleProduct().then((response) => {
+  checkProductName(env: Environment) {
+    new GETSingleProductAPI().getSingleProduct(env).then((response) => {
       expect(response.body.name).to.eq("Green Cabbage Organic")
     })
   }
 
-  checkProductQuantityAndIsInStock() {
-    new GETSingleProductAPI().getSingleProduct().then((response) => {
+  checkProductQuantityAndIsInStock(env: Environment) {
+    new GETSingleProductAPI().getSingleProduct(env).then((response) => {
       expect(response.body.inStock).to.be.true
       expect(response.body["current-stock"]).to.be.above(10)
     })

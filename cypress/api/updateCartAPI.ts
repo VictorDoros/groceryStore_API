@@ -1,7 +1,11 @@
+import Environment from "../support/environment"
+
 export default class UpdateCartAPI {
-  updateQuantityProductAPI() {
+  updateQuantityProductAPI(env: Environment) {
     return cy.api({
-      url: `/carts/${Cypress.env("cartID")}/items/${Cypress.env("itemID")}`,
+      url: `${env.getEnvironment()}/carts/${Cypress.env(
+        "cartID"
+      )}/items/${Cypress.env("itemID")}`,
       method: "PATCH",
       body: {
         quantity: Math.floor(Math.random() * (9 - 2) + 2),
@@ -9,9 +13,9 @@ export default class UpdateCartAPI {
     })
   }
 
-  replaceProductAPI() {
+  replaceProductAPI(env: Environment) {
     return cy.api({
-      url: `/carts/${Cypress.env("cartID")}/items/${Cypress.env("itemID")}`,
+      url: `${env.getEnvironment()}/carts/${Cypress.env("cartID")}/items/${Cypress.env("itemID")}`,
       method: "PUT",
       body: {
         productId: `${Cypress.env("meatSeaFoodID")}`,

@@ -1,20 +1,20 @@
-import ListProductsAPI from "../api/listProductsAPI"
+import GetListProductsAPI from "../api/getListProductsAPI"
 
 describe("Get list of products", { tags: ["@getListProducts"] }, () => {
-  let listProductsAPI: ListProductsAPI
+  let getListProductsAPI: GetListProductsAPI
 
   before(() => {
-    listProductsAPI = new ListProductsAPI()
+    getListProductsAPI = new GetListProductsAPI()
   })
 
   it("Should have status 200", () => {
-    listProductsAPI.getListProducts().then((response) => {
+    getListProductsAPI.getListProducts().then((response) => {
       expect(response.status).eq(200)
     })
   })
 
   it("Response should be an object", () => {
-    listProductsAPI.getListProducts().then((response) => {
+    getListProductsAPI.getListProducts().then((response) => {
       expect(response).to.be.an("object")
       expect(response.body.length).to.be.above(0)
     })

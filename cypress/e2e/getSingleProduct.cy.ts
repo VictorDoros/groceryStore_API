@@ -1,28 +1,28 @@
-import ListProductAPI from "../api/listProductsAPI"
-import SingleProductAPI from "../api/singleProductAPI"
+import GetListProductAPI from "../api/getListProductsAPI"
+import GetSingleProductAPI from "../api/getSingleProductAPI"
 
 describe(
   "Get a single product from the list",
   { tags: ["@getSingleProduct"] },
   () => {
-    let listProductAPI: ListProductAPI
-    let singleProductAPI: SingleProductAPI
+    let getListProductsAPI: GetListProductAPI
+    let getSingleProductAPI: GetSingleProductAPI
 
     before(() => {
-      listProductAPI = new ListProductAPI()
-      singleProductAPI = new SingleProductAPI()
+      getListProductsAPI = new GetListProductAPI()
+      getSingleProductAPI = new GetSingleProductAPI()
 
-      listProductAPI.getListProducts()
+      getListProductsAPI.getListProducts()
     })
 
     it("Should have status 200", () => {
-      singleProductAPI.getSingleProduct().then((response) => {
+      getSingleProductAPI.getSingleProduct().then((response) => {
         expect(response.status).to.eq(200)
       })
     })
 
     it("Check the id of the product", () => {
-      singleProductAPI.getSingleProduct().then((response) => {
+      getSingleProductAPI.getSingleProduct().then((response) => {
         expect(response.body)
           .to.be.an("object")
           .and.haveOwnProperty("id")
@@ -31,13 +31,13 @@ describe(
     })
 
     it("Check the product name", () => {
-      singleProductAPI.getSingleProduct().then((response) => {
+      getSingleProductAPI.getSingleProduct().then((response) => {
         expect(response.body.name).to.eq("Green Cabbage Organic")
       })
     })
 
     it("Check that product is in stock and the quantity is above 10", () => {
-      singleProductAPI.getSingleProduct().then((response) => {
+      getSingleProductAPI.getSingleProduct().then((response) => {
         expect(response.body.inStock).to.be.true
         expect(response.body["current-stock"]).to.be.above(10)
       })

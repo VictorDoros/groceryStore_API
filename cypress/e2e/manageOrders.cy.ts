@@ -1,4 +1,4 @@
-import ListProductsAPI from "../api/listProductsAPI"
+import GetListProductsAPI from "../api/getListProductsAPI"
 import CreateCartAPI from "../api/createCartAPI"
 import AddItemAPI from "../api/addItemCartAPI"
 import RegisterAPIClient from "../api/registerAPIClient"
@@ -12,7 +12,7 @@ describe(
   "Create, update and delete the order",
   { tags: ["@manageOrders"] },
   () => {
-    let listProductsAPI: ListProductsAPI
+    let getListProductsAPI: GetListProductsAPI
     let createCartAPI: CreateCartAPI
     let addItemAPI: AddItemAPI
     let registerAPIClient: RegisterAPIClient
@@ -23,7 +23,7 @@ describe(
     let deleteOrderAPI: DeleteOrderAPI
 
     before(() => {
-      listProductsAPI = new ListProductsAPI()
+      getListProductsAPI = new GetListProductsAPI()
       createCartAPI = new CreateCartAPI()
       addItemAPI = new AddItemAPI()
       registerAPIClient = new RegisterAPIClient()
@@ -34,7 +34,7 @@ describe(
       deleteOrderAPI = new DeleteOrderAPI()
 
       registerAPIClient.registerAPIClient()
-      listProductsAPI.getListProducts()
+      getListProductsAPI.getListProducts()
       createCartAPI.createCart()
     })
 

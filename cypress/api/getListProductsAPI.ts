@@ -1,6 +1,6 @@
 import "cypress-map"
 
-export default class ListProductsAPI {
+export default class GETListProductsAPI {
   getListProducts() {
     return cy
       .api({

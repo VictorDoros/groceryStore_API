@@ -1,4 +1,4 @@
-import ListProductsAPI from "../api/listProductsAPI"
+import GetListProductsAPI from "../api/getListProductsAPI"
 import CreateCartAPI from "../api/createCartAPI"
 import AddItemAPI from "../api/addItemCartAPI"
 import UpdateCartAPI from "../api/updateCartAPI"
@@ -8,20 +8,20 @@ describe(
   "Add and update items from the cart",
   { tags: ["@manageCartItems"] },
   () => {
-    let listProductsAPI: ListProductsAPI
+    let getListProductsAPI: GetListProductsAPI
     let createCartAPI: CreateCartAPI
     let addItemAPI: AddItemAPI
     let updateCartAPI: UpdateCartAPI
     let getCartAPI: GetCartAPI
 
     before(() => {
-      listProductsAPI = new ListProductsAPI()
+      getListProductsAPI = new GetListProductsAPI()
       createCartAPI = new CreateCartAPI()
       addItemAPI = new AddItemAPI()
       updateCartAPI = new UpdateCartAPI()
       getCartAPI = new GetCartAPI()
 
-      listProductsAPI.getListProducts()
+      getListProductsAPI.getListProducts()
       createCartAPI.createCart()
     })
 

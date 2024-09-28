@@ -1,4 +1,4 @@
-export default class SingleProductAPI {
+export default class GETSingleProductAPI {
   getSingleProduct() {
     return cy
       .api({

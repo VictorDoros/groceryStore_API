@@ -1,27 +1,19 @@
-import GetCartAPI from "../api/getCartAPI"
-import CreateCartAPI from "../api/createCartAPI"
+import CartActions from "../actions/cartActions"
 
 describe("Get the cart and add items", { tags: ["@getCart"] }, () => {
-  let getCartAPI: GetCartAPI
-  let createCartAPI: CreateCartAPI
+  let cartActions: CartActions
 
   before(() => {
-    getCartAPI = new GetCartAPI()
-    createCartAPI = new CreateCartAPI()
+    cartActions = new CartActions()
 
-    createCartAPI.createCart()
+    cartActions.sendCreateCartRequest()
   })
 
   it("Should have status 200 when getting the cart", () => {
-    getCartAPI.getCartAPI().then((response) => {
-      expect(response.status).to.eq(200)
-    })
+    cartActions.getCart_checkStatusCode()
   })
 
   it("Cart should have no items (should be empty)", () => {
-    getCartAPI.getCartAPI().then((response) => {
-      expect(response.body).to.haveOwnProperty("created")
-      expect(response.body.items).to.be.an("array").and.empty
-    })
+    cartActions.checkCartIsCreatedAndEmpty()
   })
 })

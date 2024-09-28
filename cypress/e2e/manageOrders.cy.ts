@@ -38,7 +38,7 @@ describe(
       createCartAPI.createCart()
     })
 
-    it("Should have status 201 after creating a new cart", () => {
+    it("Should have status 201 after creating a new order", () => {
       addItemAPI.addItem().then((response) => {
         expect(response.status).to.eq(201)
       })
@@ -79,12 +79,18 @@ describe(
       })
     })
 
-    //   it("Should receive the corresponding error that the orderID was not found", () => {
-    //     deleteOrderAPI.deleteOrderOrder().then((response) => {
-    //       expect(response.body.error).to.eq(
-    //         `No order with id ${Cypress.env("orderID")}.`
-    //       )
-    //     })
-    //   })
+    it("Should have the status code 404 when trying to find the removed order", () => {
+      getSingleOrderAPI.getSingleOrder().then((response) => {
+        expect(response.status).to.eq(404)
+      })
+    })
+
+    it("Should receive the corresponding error that the orderID was not found", () => {
+      getSingleOrderAPI.getSingleOrder().then((response) => {
+        expect(response.body.error).to.eq(
+          `No order with id ${Cypress.env("orderID")}.`
+        )
+      })
+    })
   }
 )

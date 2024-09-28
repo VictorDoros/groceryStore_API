@@ -6,6 +6,7 @@ export default class GetSingleOrderAPI {
       headers: {
         Authorization: `Bearer ${Cypress.env("accessToken")}`,
       },
+      failOnStatusCode: false,
     })
   }
 }

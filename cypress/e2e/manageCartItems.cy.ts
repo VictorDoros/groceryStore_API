@@ -3,6 +3,7 @@ import CreateCartAPI from "../api/createCartAPI"
 import AddItemAPI from "../api/addItemCartAPI"
 import UpdateCartAPI from "../api/updateCartAPI"
 import GetCartAPI from "../api/getCartAPI"
+import GetCartItemsAPI from "../api/getCartItemsAPI"
 
 describe(
   "Add and update items from the cart",
@@ -13,6 +14,7 @@ describe(
     let addItemAPI: AddItemAPI
     let updateCartAPI: UpdateCartAPI
     let getCartAPI: GetCartAPI
+    let getCartItemsAPI: GetCartItemsAPI
 
     before(() => {
       getListProductsAPI = new GetListProductsAPI()
@@ -20,6 +22,7 @@ describe(
       addItemAPI = new AddItemAPI()
       updateCartAPI = new UpdateCartAPI()
       getCartAPI = new GetCartAPI()
+      getCartItemsAPI = new GetCartItemsAPI()
 
       getListProductsAPI.getListProducts()
       createCartAPI.createCart()
@@ -38,10 +41,14 @@ describe(
     })
 
     it("Check the desired item was added", () => {
-      getCartAPI.getCartAPI().then((response) => {
-        expect(response.body.items[0].quantity).to.eq(1)
-        expect(response.body.items[0].productId).to.eq(Cypress.env("productID"))
-        expect(response.body.items[0].id).to.eq(Cypress.env("itemID"))
+      getCartItemsAPI.getCartItems().then((response) => {
+        expect(response.body[Cypress.env("indexOfItem")].quantity).to.eq(1)
+        expect(response.body[Cypress.env("indexOfItem")].productId).to.eq(
+          Cypress.env("productID")
+        )
+        expect(response.body[Cypress.env("indexOfItem")].id).to.eq(
+          Cypress.env("itemID")
+        )
       })
     })
 
@@ -52,8 +59,8 @@ describe(
     })
 
     it("The quantity should be different after updating it", () => {
-      getCartAPI.getCartAPI().then((response) => {
-        expect(response.body.items[0].quantity).not.to.eq(1)
+      getCartItemsAPI.getCartItems().then((response) => {
+        expect(response.body[Cypress.env("indexOfItem")].quantity).not.to.eq(1)
       })
     })
 
@@ -64,8 +71,8 @@ describe(
     })
 
     it("Should have the replaced product from the cart", () => {
-      getCartAPI.getCartAPI().then((response) => {
-        expect(response.body.items[0].productId).to.eq(
+      getCartItemsAPI.getCartItems().then((response) => {
+        expect(response.body[Cypress.env("indexOfItem")].productId).to.eq(
           Cypress.env("meatSeaFoodID")
         )
       })

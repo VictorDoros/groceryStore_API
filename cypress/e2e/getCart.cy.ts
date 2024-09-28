@@ -18,8 +18,9 @@ describe("Get the cart and add items", { tags: ["@getCart"] }, () => {
     })
   })
 
-  it("Cart should an empty array", () => {
+  it("Cart should have no items (should be empty)", () => {
     getCartAPI.getCartAPI().then((response) => {
+      expect(response.body).to.haveOwnProperty("created")
       expect(response.body.items).to.be.an("array").and.empty
     })
   })

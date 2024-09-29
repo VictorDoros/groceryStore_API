@@ -14,7 +14,7 @@ jobs:
       - name: Run Cypress Test
         uses: cypress-io/github-action@v6
         with:
-          command: npm run runTesting
+          command: npm run runTesing
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

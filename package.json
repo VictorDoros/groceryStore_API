@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "runTesting": "cypress run --env env='testing'",
+    "runTesting": "cypress run --env env='testing',greptags='@manageOrders'",
     "runProd": "cypress run --env env='prod'"
   },
   "author": "",

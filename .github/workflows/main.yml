@@ -2,7 +2,7 @@ name: E2E regression
 on:
   push:
     branches:
-      - master
+      - testing
 
 jobs:
   Cypress-Test:

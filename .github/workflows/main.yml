@@ -1,9 +1,10 @@
 name: E2E regression
 on:
+  workflow_dispatch:
+on:
   push:
     branches:
-      - testing
-  workflow_dispatch:    
+      - testing    
 
 jobs:
   Cypress-Test:

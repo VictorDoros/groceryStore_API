@@ -20,7 +20,7 @@ export default class ProductActions {
   checkResponseOfGetListProducts(env: Environment) {
     new GETListProductsAPI().getListProducts(env).then((response) => {
       expect(response).to.be.an("object")
-      expect(response.body.length).to.be.above(0)
+      expect(response.body.length).to.be.above(0) 
     })
   }
 

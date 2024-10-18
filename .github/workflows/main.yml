@@ -1,7 +1,7 @@
 name: E2E regression
+
 on:
   workflow_dispatch:
-on:
   push:
     branches:
       - testing    

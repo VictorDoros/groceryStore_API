@@ -15,7 +15,9 @@ export default class UpdateCartAPI {
 
   replaceProductAPI(env: Environment) {
     return cy.api({
-      url: `${env.getEnvironment()}/carts/${Cypress.env("cartID")}/items/${Cypress.env("itemID")}`,
+      url: `${env.getEnvironment()}/carts/${Cypress.env(
+        "cartID"
+      )}/items/${Cypress.env("itemID")}`,
       method: "PUT",
       body: {
         productId: `${Cypress.env("meatSeaFoodID")}`,

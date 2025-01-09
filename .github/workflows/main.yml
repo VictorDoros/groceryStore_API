@@ -5,7 +5,7 @@ on:
       - master
   workflow_dispatch:
   schedule:
-    - cron:  '0 8 * * *'
+    - cron: "0 8 * * *"
 
 jobs:
   Cypress-Test:
@@ -17,7 +17,7 @@ jobs:
       - name: Run Cypress Test
         uses: cypress-io/github-action@v6
         with:
-          command: npm run runTesting
+          command: npm run runProd
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

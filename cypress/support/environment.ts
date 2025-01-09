@@ -9,7 +9,7 @@ export default class Environment {
     } else if (env === "prod") {
       return Cypress.config(
         "baseUrl",
-        "https://simple-grocery-store-api.glitch.me"
+        "https://simple-grocery-store-api.glitch.me" 
       )
     }
   }

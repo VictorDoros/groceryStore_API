@@ -3,7 +3,7 @@ name: E2E regression
 on:
   push:
     branches:
-      - testing
+      - production
 
 jobs:
   Cypress-Test:

@@ -1,8 +1,9 @@
 name: E2E regression
+
 on:
   push:
     branches:
-      - production
+      - testing
 
 jobs:
   Cypress-Test:

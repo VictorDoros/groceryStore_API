@@ -16,5 +16,5 @@ describe("Get list of products", { tags: ["@getListProducts"] }, () => {
 
   it("Response should be an object", () => {
     productActions.checkResponseOfGetListProducts(environment)
-  })
+  }) 
 })
